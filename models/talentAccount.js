@@ -34,7 +34,9 @@ const educationSchema = new Schema ({
 )
 
 const trainingSchema = new Schema ({
-
+  institution: String,
+  focus: String,
+  teacher: String,
 },
   {timestamps: true}
 )
