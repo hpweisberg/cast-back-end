@@ -3,6 +3,42 @@ import mongoose from 'mongoose'
 
 const Schema = mongoose.Schema
 
+const experienceSchema = new Schema ({
+  productionTitle: {
+    type: String,
+    required: true
+  },
+  role: {
+    type: String,
+    required: true
+  },
+  type: {
+    type: String,
+    enum: ['Film', 'TV', 'Stage', 'Other']
+  },
+  producingEntity: String,
+  director: String,
+  year: Number
+},
+  {timestamps: true}
+)
+
+const educationSchema = new Schema ({
+  institution: String,
+  degree: String,
+  major: String,
+  graduated: Boolean,
+  year: Number,
+},
+  {timestamps: true}
+)
+
+const trainingSchema = new Schema ({
+
+},
+  {timestamps: true}
+)
+
 const talentAccountSchema = new Schema({
   headshot: String,//The POST request that creates the account will set this string to the Cloudify image that they uploaded on sign up
   unionStatus: {
