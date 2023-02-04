@@ -1,5 +1,5 @@
 import mongoose from 'mongoose'
-import User from './user.js'
+
 
 const Schema = mongoose.Schema
 
@@ -10,7 +10,7 @@ const profileSchema = new Schema({
     type: String,
     enum: ['He/Him/His', 'She/Her/Hers', 'They/Them/Theirs']
   },
-  cd: Boolean,//true = cd, false = talent
+  isCd: Boolean,//true = cd, false = talent
   location: String,//where the user is based
   phoneNumber: Number,
   email: String,
