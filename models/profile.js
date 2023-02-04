@@ -15,7 +15,7 @@ const profileSchema = new Schema({
   phoneNumber: Number,
   email: String,
   website: String,
-  talentAccount: { type: Schema.Types.ObjectId, ref: 'ActorAccount'},
+  talentAccount: { type: Schema.Types.ObjectId, ref: 'TalentAccount'},
   cdAccount: { type: Schema.Types.ObjectId, ref: 'CDAccount'}
 }, {
   timestamps: true,
