@@ -26,7 +26,7 @@ function index(req, res) {
 const getProfile = async (req, res) => {
   try {
     const profile = await Profile.findById(req.params.id)
-    res.json(profile)
+    res.status(200).json(profile)
   } catch (error) {
 
   }
@@ -53,15 +53,15 @@ function addPhoto(req, res) {
 
 const update = async (req, res) => {
   try {
-    const profileData = await Profile.findByIdAndUpdate(
-      req.params.id,
-      req.body
-    )
-    res.json(profileData)
+      const profile = await Profile.findByIdAndUpdate(
+          req.params.id,
+          req.body,
+          { new: true }
+      )
+      res.status(200).json(blog)
   } catch (error) {
-    console.log(error)
+      res.status(500).json(error)
   }
-  
 }
 
 const createTalentAccount = async (req, res) => {
