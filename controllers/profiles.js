@@ -58,7 +58,7 @@ const update = async (req, res) => {
           req.body,
           { new: true }
       )
-      res.status(200).json(blog)
+      res.status(200).json(profile)
   } catch (error) {
       res.status(500).json(error)
   }
