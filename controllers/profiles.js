@@ -1,5 +1,7 @@
 import { Profile } from '../models/profile.js'
 import { v2 as cloudinary } from 'cloudinary'
+import { TalentAccount } from '../models/talentAccount.js'
+import { CDAccount } from '../models/cdAccount.js'
 
 function index(req, res) {
   Profile.find({})
@@ -62,5 +64,35 @@ const update = async (req, res) => {
   
 }
 
+const createTalentAccount = async (req, res) => {
+  try {
+    const talentAccount = await TalentAccount.create(req.body)
+    const profile = await Profile.findById(req.params.id)
+    profile.talentAccount = talentAccount._id
+    await profile.save()
+    res.json(profile)
+  } catch (error) {
+    console.log(error);
+  }
+}
 
-export { index, getProfile, addPhoto, update }
+const createCdAccount = async (req, res) => {
+  try {
+    const cdAccount = await CDAccount.create(req.body)
+    const profile = await Profile.findById(req.params.id)
+    profile.cdAccount = cdAccount._id
+    await profile.save()
+    res.json(profile)
+  } catch (error) {
+    console.log(error);
+  }
+}
+
+
+export { index, 
+  getProfile, 
+  addPhoto, 
+  update,
+  createTalentAccount,
+  createCdAccount,
+}

@@ -14,7 +14,7 @@ const listSchema = new Schema({
 const cdAccountSchema = new Schema({
   company: String,//producing entity that the CD represents
   lists: [listSchema],
-  blacklist: { type: Schema.Types.ObjectId, ref: 'TalentAccount' }
+  blacklist: [{ type: Schema.Types.ObjectId, ref: 'TalentAccount' }]
 }, {
   timestamps: true,
 })
