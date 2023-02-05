@@ -69,6 +69,7 @@ const createTalentAccount = async (req, res) => {
     const talentAccount = await TalentAccount.create(req.body)
     const profile = await Profile.findById(req.params.id)
     profile.talentAccount = talentAccount._id
+    await profile.save()
     res.json(profile)
   } catch (error) {
     console.log(error);
@@ -80,6 +81,7 @@ const createCdAccount = async (req, res) => {
     const cdAccount = await CDAccount.create(req.body)
     const profile = await Profile.findById(req.params.id)
     profile.cdAccount = cdAccount._id
+    await profile.save()
     res.json(profile)
   } catch (error) {
     console.log(error);
