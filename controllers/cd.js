@@ -28,7 +28,8 @@ const createList = async (req, res) => {
 const indexLists = async (req, res) => {
   try {
     const cd = await CDAccount.findById(req.params.id)
-    const lists = await cd.lists
+    console.log(cd);
+    const lists = cd.lists
     res.json(lists)
   } catch (error) {
     console.log(error);
