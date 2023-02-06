@@ -47,9 +47,36 @@ const createTraining = async (req, res) => {
   }
 }
 
+const updateExperience = async (req, res) => {
+  try {
+    
+  } catch (error) {
+    console.log(error);
+  }
+}
+
+const updateEducation = async (req, res) => {
+  try {
+    
+  } catch (error) {
+    console.log(error);
+  }
+}
+
+const updateTraining = async (req, res) => {
+  try {
+    
+  } catch (error) {
+    console.log(error);
+  }
+}
+
 export {
   update,
   createExperience,
   createEducation,
   createTraining,
+  updateExperience,
+  updateEducation,
+  updateTraining,
 }
