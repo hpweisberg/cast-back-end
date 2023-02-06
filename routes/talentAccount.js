@@ -9,6 +9,7 @@ const router = Router()
 
 /*---------- Protected Routes ----------*/
 router.use(decodeUserFromToken)
+router.get('/', checkAuth, talentCtrl.index)
 router.post('/:id/experience', checkAuth, talentCtrl.createExperience)
 router.post('/:id/education', checkAuth, talentCtrl.createEducation)
 router.post('/:id/training', checkAuth, talentCtrl.createTraining)

@@ -1,5 +1,14 @@
 import { TalentAccount } from '../models/talentAccount.js'
 
+const index = async (req, res) => {
+  try {
+    const talent = await TalentAccount.find({})
+    res.json(talent)
+  } catch (error) {
+    console.log(error);
+  }
+}
+
 const update = async (req, res) => {
   try {
       const talentAccount = await TalentAccount.findByIdAndUpdate(
@@ -120,6 +129,7 @@ const deleteTraining = async (req, res) => {
 }
 
 export {
+  index,
   update,
   createExperience,
   createEducation,
