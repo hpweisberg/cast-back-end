@@ -84,6 +84,24 @@ const deleteList = async (req, res) => {
   }
 }
 
+const removeFromBlacklist = async (req, res) => {
+  try {
+    const cd = await CDAccount.findById(req.params.id)
+    cd.blacklist.remove(req.params.talentId)
+    res.json(cd.blacklist)
+  } catch (error) {
+    console.log(error);
+  }
+}
+
+const removeFromList = async (req, res) => {
+  try {
+    
+  } catch (error) {
+    console.log(error);
+  }
+}
+
 
 export {
   indexLists,
@@ -93,4 +111,6 @@ export {
   updateList,
   addToBlacklist,
   deleteList,
+  removeFromBlacklist,
+  removeFromList,
 }
