@@ -27,6 +27,7 @@ const getProfile = async (req, res) => {
   try {
     const profile = await Profile.findById(req.params.id)
     .populate('talentAccount')
+    .populate('cdAccount')
     res.status(200).json(profile)
   } catch (error) {
 
