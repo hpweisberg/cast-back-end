@@ -54,7 +54,6 @@ const updateExperience = async (req, res) => {
     experience.set(req.body)
     talentAccount.save()
     res.json(talentAccount)
-    console.log(experience);
   } catch (error) {
     console.log(error);
   }
@@ -62,7 +61,11 @@ const updateExperience = async (req, res) => {
 
 const updateEducation = async (req, res) => {
   try {
-    
+    const talentAccount = await TalentAccount.findById(req.params.id)
+    const education = talentAccount.education.id(req.params.educationId)
+    education.set(req.body)
+    talentAccount.save()
+    res.json(talentAccount)
   } catch (error) {
     console.log(error);
   }
