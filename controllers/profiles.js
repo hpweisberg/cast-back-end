@@ -23,20 +23,10 @@ const index = async (req, res) => {
   }
 }
 
-// function getProfile(req, res) {
-//   Profile.findById(req.params.id)
-//   .then(profile => {
-//     console.log("profile", profile)
-//     res.json(profile)
-//   })
-//   .catch(err => {
-//     console.log(err)
-//   })
-// }
-
 const getProfile = async (req, res) => {
   try {
     const profile = await Profile.findById(req.params.id)
+    .populate('talentAccount')
     res.status(200).json(profile)
   } catch (error) {
 

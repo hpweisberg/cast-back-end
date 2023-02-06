@@ -13,8 +13,9 @@ router.get('/', checkAuth, profilesCtrl.index)
 router.get('/:id', checkAuth, profilesCtrl.getProfile)
 router.post('/:id/talentAccount', checkAuth, profilesCtrl.createTalentAccount)
 router.post('/:id/cdAccount', checkAuth, profilesCtrl.createCdAccount)
-router.put('/:id/add-photo', checkAuth, profilesCtrl.addPhoto)
+router.put('/:id/add-photo', checkAuth, profilesCtrl.addPhoto) 
 router.patch('/:id', checkAuth, profilesCtrl.update)
+
 router.patch('/:id/talentAccount/:talentId', checkAuth, profilesCtrl.updateTalentAccount)
 router.patch('/:id/cdAccount/:cdId', checkAuth, profilesCtrl.updateCdAccount)
 
