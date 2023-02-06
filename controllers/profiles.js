@@ -79,6 +79,7 @@ const createTalentAccount = async (req, res) => {
   try {
     const talentAccount = await TalentAccount.create(req.body)
     const profile = await Profile.findById(req.params.id)
+    talentAccount.name = profile.name
     profile.talentAccount = talentAccount._id
     await profile.save()
     res.json(profile)

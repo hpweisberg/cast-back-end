@@ -9,6 +9,7 @@ const router = Router()
 
 /*---------- Protected Routes ----------*/
 router.use(decodeUserFromToken)
+router.get('/:id/lists/', checkAuth, cdCtrl.indexLists)
 router.get('/:id/lists/:listId', checkAuth, cdCtrl.showList)
 router.post('/:id/lists', checkAuth, cdCtrl.createList)
 router.post('/:id/blacklist/:talentId', checkAuth, cdCtrl.addToBlacklist)
