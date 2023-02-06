@@ -83,6 +83,33 @@ const updateTraining = async (req, res) => {
   }
 }
 
+const deleteExperience = async (req, res) => {
+  try {
+    const talent = await TalentAccount.findById(req.params.id)
+    const exp = talent.experience.id(req.params.experienceId)
+    talent.experience.remove(exp)
+    res.json(talent)
+  } catch (error) {
+    console.log(error);
+  }
+}
+
+const deleteEducation = async (req, res) => {
+  try {
+    
+  } catch (error) {
+    console.log(error);
+  }
+}
+
+const deleteTraining = async (req, res) => {
+  try {
+    
+  } catch (error) {
+    console.log(error);
+  }
+}
+
 export {
   update,
   createExperience,
@@ -91,4 +118,7 @@ export {
   updateExperience,
   updateEducation,
   updateTraining,
+  deleteExperience,
+  deleteEducation,
+  deleteTraining,
 }
