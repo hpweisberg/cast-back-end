@@ -77,12 +77,14 @@ const update = async (req, res) => {
 
 const createTalentAccount = async (req, res) => {
   try {
-    const talentAccount = await TalentAccount.create(req.body)
     const profile = await Profile.findById(req.params.id)
+    const talentAccount = await TalentAccount.create(req.body)
     talentAccount.name = profile.name
     profile.talentAccount = talentAccount._id
+    console.log(talentAccount);
+    await talentAccount.save()
     await profile.save()
-    res.json(profile)
+    res.json(talentAccount)
   } catch (error) {
     console.log(error);
   }
