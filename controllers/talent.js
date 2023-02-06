@@ -1,8 +1,10 @@
 import { TalentAccount } from '../models/talentAccount.js'
+import { Profile } from '../models/profile.js'
 
 const index = async (req, res) => {
   try {
-    const talent = await TalentAccount.find({})
+    const profiles = await Profile.find({})
+    const talent = profiles.filter((profile) => profile.talentAccount)
     res.json(talent)
   } catch (error) {
     console.log(error);
