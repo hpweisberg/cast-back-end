@@ -9,6 +9,8 @@ const router = Router()
 
 /*---------- Protected Routes ----------*/
 router.use(decodeUserFromToken)
+router.post('/:id/lists', checkAuth, cdCtrl.createList)
+router.post('/:id/blacklist/:talentId', checkAuth, cdCtrl.addToBlacklist)
 router.patch('/:id', checkAuth, cdCtrl.update)
 
 export { router }
