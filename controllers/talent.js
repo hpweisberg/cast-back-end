@@ -49,7 +49,12 @@ const createTraining = async (req, res) => {
 
 const updateExperience = async (req, res) => {
   try {
-    
+    const talentAccount = await TalentAccount.findById(req.params.id)
+    const experience = talentAccount.experience.id(req.params.experienceId)
+    experience.set(req.body)
+    talentAccount.save()
+    res.json(talentAccount)
+    console.log(experience);
   } catch (error) {
     console.log(error);
   }
