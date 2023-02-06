@@ -16,7 +16,10 @@ const update = async (req, res) => {
 
 const createExperience = async (req, res) => {
   try {
-    
+    const talentAccount = await TalentAccount.findById(req.params.id)
+    talentAccount.experience.push(req.body)
+    talentAccount.save()
+    res.json(talentAccount)
   } catch (error) {
     console.log(error);
   }
@@ -24,7 +27,10 @@ const createExperience = async (req, res) => {
 
 const createEducation = async (req, res) => {
   try {
-    
+    const talentAccount = await TalentAccount.findById(req.params.id)
+    talentAccount.education.push(req.body)
+    talentAccount.save()
+    res.json(talentAccount)
   } catch (error) {
     console.log(error);
   }
@@ -32,7 +38,10 @@ const createEducation = async (req, res) => {
 
 const createTraining = async (req, res) => {
   try {
-    
+    const talentAccount = await TalentAccount.findById(req.params.id)
+    talentAccount.training.push(req.body)
+    talentAccount.save()
+    res.json(talentAccount)
   } catch (error) {
     console.log(error);
   }
