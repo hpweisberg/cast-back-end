@@ -73,7 +73,11 @@ const updateEducation = async (req, res) => {
 
 const updateTraining = async (req, res) => {
   try {
-    
+    const talentAccount = await TalentAccount.findById(req.params.id)
+    const training = talentAccount.training.id(req.params.trainingId)
+    training.set(req.body)
+    talentAccount.save()
+    res.json(talentAccount)
   } catch (error) {
     console.log(error);
   }
