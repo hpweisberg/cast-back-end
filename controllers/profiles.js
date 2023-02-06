@@ -88,6 +88,32 @@ const createCdAccount = async (req, res) => {
   }
 }
 
+const updateTalentAccount = async (req, res) => {
+  try {
+      const talentAccount = await TalentAccount.findByIdandUpdate(
+        req.params.talentId,
+        req.body,
+        { new: true }
+        )
+      res.status(200).json(talentAccount)
+  } catch (error) {
+      res.status(500).json(error)
+  }
+}
+
+const updateCdAccount = async (req, res) => {
+  try {
+      const profile = await Profile.findByIdAndUpdate(
+          req.params.id,
+          req.body,
+          { new: true }
+      )
+      res.status(200).json(profile)
+  } catch (error) {
+      res.status(500).json(error)
+  }
+}
+
 
 export { index, 
   getProfile, 
@@ -95,4 +121,6 @@ export { index,
   update,
   createTalentAccount,
   createCdAccount,
+  updateTalentAccount,
+  updateCdAccount,
 }
