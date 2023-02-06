@@ -13,6 +13,7 @@ router.get('/:id/lists/', checkAuth, cdCtrl.indexLists)
 router.get('/:id/lists/:listId', checkAuth, cdCtrl.showList)
 router.post('/:id/lists', checkAuth, cdCtrl.createList)
 router.post('/:id/blacklist/:talentId', checkAuth, cdCtrl.addToBlacklist)
+router.patch('/:id/lists/:listId', checkAuth, cdCtrl.updateList)
 router.patch('/:id', checkAuth, cdCtrl.update)
 router.delete('/:id/lists/:listId', checkAuth, cdCtrl.deleteList)
 

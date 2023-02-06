@@ -46,6 +46,18 @@ const showList = async (req, res) => {
   }
 }
 
+const updateList = async (req, res) => {
+  try {
+    const cd = await CDAccount.findById(req.params.id)
+    const list = cd.lists.id(req.params.listId)
+    list.set(req.body)
+    cd.save()
+    res.json(list)
+  } catch (error) {
+    console.log(error);
+  }
+}
+
 const addToBlacklist = async (req, res) => {
   try {
     const blacklistTalent = await TalentAccount.findById(req.params.talentId)
@@ -78,6 +90,7 @@ export {
   update,
   createList,
   showList,
+  updateList,
   addToBlacklist,
   deleteList,
 }
