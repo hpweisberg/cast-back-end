@@ -96,7 +96,11 @@ const removeFromBlacklist = async (req, res) => {
 
 const removeFromList = async (req, res) => {
   try {
-    
+    const cd = await CDAccount.findById(req.params.id)
+    const list = cd.lists.id(req.params.listId)
+    list.talent.remove({_id: req.params.talentId})
+    await cd.save()
+    res.json(list)
   } catch (error) {
     console.log(error);
   }
