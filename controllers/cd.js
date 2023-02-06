@@ -3,12 +3,12 @@ import { TalentAccount } from '../models/talentAccount.js'
 
 const update = async (req, res) => {
   try {
-      const cdAccount = await CDAccount.findByIdAndUpdate(
-        req.params.id,
-        req.body,
-        { new: true }
-        )
-      res.status(200).json(cdAccount)
+    const cdAccount = await CDAccount.findByIdAndUpdate(
+      req.params.id,
+      req.body,
+      { new: true }
+      )
+    res.status(200).json(cdAccount)
   } catch (error) {
       res.status(500).json(error)
   }
@@ -39,9 +39,22 @@ const addToBlacklist = async (req, res) => {
   }
 }
 
+const deleteList = async (req, res) => {
+  try {
+    const cd = await CDAccount.findById(req.params.id)
+    const list = cd.lists.id(req.params.listId)
+    cd.lists.remove(list)
+    cd.save()
+    res.json(cd)
+  } catch (error) {
+    console.log(error);
+  }
+}
+
 
 export {
   update,
   createList,
   addToBlacklist,
+  deleteList,
 }

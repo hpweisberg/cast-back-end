@@ -12,5 +12,6 @@ router.use(decodeUserFromToken)
 router.post('/:id/lists', checkAuth, cdCtrl.createList)
 router.post('/:id/blacklist/:talentId', checkAuth, cdCtrl.addToBlacklist)
 router.patch('/:id', checkAuth, cdCtrl.update)
+router.delete('/:id/lists/:listId', checkAuth, cdCtrl.deleteList)
 
 export { router }
