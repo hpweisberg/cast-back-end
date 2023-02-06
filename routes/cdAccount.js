@@ -9,6 +9,7 @@ const router = Router()
 
 /*---------- Protected Routes ----------*/
 router.use(decodeUserFromToken)
+router.post('/:id/lists', checkAuth, cdCtrl.createList)
 router.patch('/:id', checkAuth, cdCtrl.update)
 
 export { router }
