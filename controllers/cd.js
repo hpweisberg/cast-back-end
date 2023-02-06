@@ -25,6 +25,15 @@ const createList = async (req, res) => {
   }
 }
 
+const indexLists = async (req, res) => {
+  try {
+    const lists = await TalentAccount.find({})
+    res.json(talent)
+  } catch (error) {
+    console.log(error);
+  }
+}
+
 const showList = async (req, res) => {
   try {
     const cd = await CDAccount.findById(req.params.id).populate('lists.talent')
@@ -63,6 +72,7 @@ const deleteList = async (req, res) => {
 
 
 export {
+  indexLists,
   update,
   createList,
   showList,
