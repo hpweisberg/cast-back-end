@@ -1,6 +1,5 @@
 import { TalentAccount } from '../models/talentAccount.js'
 
-
 const update = async (req, res) => {
   try {
       const talentAccount = await TalentAccount.findByIdAndUpdate(
@@ -19,4 +18,7 @@ const update = async (req, res) => {
 
 export {
   update,
+  createExperience,
+  createEducation,
+  createTraining,
 }
