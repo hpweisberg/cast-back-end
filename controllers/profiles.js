@@ -39,7 +39,7 @@ const getProfile = async (req, res) => {
     const profile = await Profile.findById(req.params.id)
     res.status(200).json(profile)
   } catch (error) {
-
+    console.log(error);
   }
 }
 

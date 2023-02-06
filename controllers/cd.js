@@ -28,7 +28,8 @@ const createList = async (req, res) => {
 const indexLists = async (req, res) => {
   try {
     const cd = await CDAccount.findById(req.params.id)
-    const lists = await cd.lists
+    console.log(cd);
+    const lists = cd.lists
     res.json(lists)
   } catch (error) {
     console.log(error);
@@ -39,6 +40,30 @@ const showList = async (req, res) => {
   try {
     const cd = await CDAccount.findById(req.params.id).populate('lists.talent')
     const list = cd.lists.id(req.params.listId)
+    res.json(list)
+  } catch (error) {
+    console.log(error);
+  }
+}
+
+const addToList = async (req, res) => {
+  try {
+    const cd = await CDAccount.findById(req.params.id)
+    const list = cd.lists.id(req.params.listId)
+    list.talent.push(req.params.talentId)
+    await list.save()
+    res.json(list)
+  } catch (error) {
+    console.log(error);
+  }
+}
+
+const updateList = async (req, res) => {
+  try {
+    const cd = await CDAccount.findById(req.params.id)
+    const list = cd.lists.id(req.params.listId)
+    list.set(req.body)
+    cd.save()
     res.json(list)
   } catch (error) {
     console.log(error);
@@ -71,12 +96,38 @@ const deleteList = async (req, res) => {
   }
 }
 
+const removeFromBlacklist = async (req, res) => {
+  try {
+    const cd = await CDAccount.findById(req.params.id)
+    cd.blacklist.remove(req.params.talentId)
+    res.json(cd.blacklist)
+  } catch (error) {
+    console.log(error);
+  }
+}
+
+const removeFromList = async (req, res) => {
+  try {
+    const cd = await CDAccount.findById(req.params.id)
+    const list = cd.lists.id(req.params.listId)
+    list.talent.remove({_id: req.params.talentId})
+    await cd.save()
+    res.json(list)
+  } catch (error) {
+    console.log(error);
+  }
+}
+
 
 export {
   indexLists,
   update,
   createList,
   showList,
+  addToList,
+  updateList,
   addToBlacklist,
   deleteList,
+  removeFromBlacklist,
+  removeFromList,
 }
