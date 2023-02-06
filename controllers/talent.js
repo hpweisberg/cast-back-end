@@ -88,6 +88,7 @@ const deleteExperience = async (req, res) => {
     const talent = await TalentAccount.findById(req.params.id)
     const exp = talent.experience.id(req.params.experienceId)
     talent.experience.remove(exp)
+    talent.save()
     res.json(talent)
   } catch (error) {
     console.log(error);
@@ -96,7 +97,11 @@ const deleteExperience = async (req, res) => {
 
 const deleteEducation = async (req, res) => {
   try {
-    
+    const talent = await TalentAccount.findById(req.params.id)
+    const edu = talent.education.id(req.params.educationId)
+    talent.education.remove(edu)
+    talent.save()
+    res.json(talent)
   } catch (error) {
     console.log(error);
   }
@@ -104,7 +109,11 @@ const deleteEducation = async (req, res) => {
 
 const deleteTraining = async (req, res) => {
   try {
-    
+    const talent = await TalentAccount.findById(req.params.id)
+    const trn = talent.training.id(req.params.trainingId)
+    talent.training.remove(trn)
+    talent.save()
+    res.json(talent)
   } catch (error) {
     console.log(error);
   }
