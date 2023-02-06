@@ -3,13 +3,24 @@ import { v2 as cloudinary } from 'cloudinary'
 import { TalentAccount } from '../models/talentAccount.js'
 import { CDAccount } from '../models/cdAccount.js'
 
-function index(req, res) {
-  Profile.find({})
-  .then(profiles => res.json(profiles))
-  .catch(err => {
-    console.log(err)
-    res.status(500).json(err)
-  })
+// function index(req, res) {
+//   Profile.find({})
+//   .then(profiles => res.json(profiles))
+//   .catch(err => {
+//     console.log(err)
+//     res.status(500).json(err)
+//   })
+// }
+
+const index = async (req, res) => {
+  try {
+    const profiles = await Profile.find({})
+      .populate('talentAccount')
+      .populate('cdAccount')
+    res.json(profiles)
+  } catch (error) {
+    console.log(error);
+  }
 }
 
 // function getProfile(req, res) {
