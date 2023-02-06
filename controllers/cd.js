@@ -1,4 +1,5 @@
 import { CDAccount } from '../models/cdAccount.js'
+import { TalentAccount } from '../models/talentAccount.js'
 
 const update = async (req, res) => {
   try {
@@ -24,22 +25,23 @@ const createList = async (req, res) => {
   }
 }
 
-// const createList = async (req, res) => {
-//   try {
-//     const list = await list.create(req.body)
-//     const cd = await CDAccount.findByIdAndUpdate(
-//       req.params.id,
-//       { $push: { lists: list } },
-//       { new: true }
-//       )
-//     res.json(cd)
-//   } catch (error) {
-//     console.log(error);
-//   }
-// }
+const addToBlacklist = async (req, res) => {
+  try {
+    const blacklistTalent = await TalentAccount.findById(req.params.talentId)
+    const cd = await CDAccount.findByIdAndUpdate(
+      req.params.id,
+      { $push: { blacklist: blacklistTalent } },
+      { new: true }
+      )
+    res.json(cd)
+  } catch (error) {
+    console.log(error);
+  }
+}
 
 
 export {
   update,
   createList,
+  addToBlacklist,
 }
