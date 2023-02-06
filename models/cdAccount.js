@@ -5,7 +5,7 @@ const Schema = mongoose.Schema
 
 const listSchema = new Schema({
   titleOfList: String,
-  talent: { type: Schema.Types.ObjectId, ref: 'TalentAccount' },
+  talent: [{ type: Schema.Types.ObjectId, ref: 'TalentAccount' }],
   notes: String
 }, {
   timestamps: true
