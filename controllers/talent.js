@@ -58,41 +58,41 @@ const createTraining = async (req, res) => {
   }
 }
 
-// const updateExperience = async (req, res) => {
-//   try {
-//     const talentAccount = await TalentAccount.findById(req.params.id)
-//     const experience = talentAccount.experience.id(req.params.experienceId)
-//     experience.set(req.body)
-//     talentAccount.save()
-//     res.json(talentAccount)
-//   } catch (error) {
-//     console.log(error);
-//   }
-// }
+const updateExperience = async (req, res) => {
+  try {
+    const talentAccount = await TalentAccount.findById(req.params.id)
+    const experience = talentAccount.experience.id(req.params.experienceId)
+    experience.set(req.body)
+    talentAccount.save()
+    res.json(talentAccount)
+  } catch (error) {
+    console.log(error);
+  }
+}
 
-// const updateEducation = async (req, res) => {
-//   try {
-//     const talentAccount = await TalentAccount.findById(req.params.id)
-//     const education = talentAccount.education.id(req.params.educationId)
-//     education.set(req.body)
-//     talentAccount.save()
-//     res.json(talentAccount)
-//   } catch (error) {
-//     console.log(error);
-//   }
-// }
+const updateEducation = async (req, res) => {
+  try {
+    const talentAccount = await TalentAccount.findById(req.params.id)
+    const education = talentAccount.education.id(req.params.educationId)
+    education.set(req.body)
+    talentAccount.save()
+    res.json(talentAccount)
+  } catch (error) {
+    console.log(error);
+  }
+}
 
-// const updateTraining = async (req, res) => {
-//   try {
-//     const talentAccount = await TalentAccount.findById(req.params.id)
-//     const training = talentAccount.training.id(req.params.trainingId)
-//     training.set(req.body)
-//     talentAccount.save()
-//     res.json(talentAccount)
-//   } catch (error) {
-//     console.log(error);
-//   }
-// }
+const updateTraining = async (req, res) => {
+  try {
+    const talentAccount = await TalentAccount.findById(req.params.id)
+    const training = talentAccount.training.id(req.params.trainingId)
+    training.set(req.body)
+    talentAccount.save()
+    res.json(talentAccount)
+  } catch (error) {
+    console.log(error);
+  }
+}
 
 const deleteExperience = async (req, res) => {
   try {
@@ -136,12 +136,12 @@ export {
   createExperience,
   createEducation,
   createTraining,
-  // showExperience,
-  // showEducation,
-  // showTraining,
-  // updateExperience,
-  // updateEducation,
-  // updateTraining,
+  showExperience,
+  showEducation,
+  showTraining,
+  updateExperience,
+  updateEducation,
+  updateTraining,
   deleteExperience,
   deleteEducation,
   deleteTraining,

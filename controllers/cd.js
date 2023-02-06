@@ -84,13 +84,15 @@ const addToBlacklist = async (req, res) => {
   }
 }
 
-// const showBlacklist = async (req, res) => {
-//   try {
-//     console.log(req);
-//   } catch (error) {
-//     console.log(error);
-//   }
-// }
+const showBlacklist = async (req, res) => {
+  try {
+    const cd = await CDAccount.findById(req.params.id)
+    const blacklist = cd.blacklist
+    res.json(blacklist)
+  } catch (error) {
+    console.log(error);
+  }
+}
 
 const deleteList = async (req, res) => {
   try {
@@ -136,7 +138,7 @@ export {
   updateList,
   addToBlacklist,
   deleteList,
-  // showBlacklist,
+  showBlacklist,
   removeFromBlacklist,
   removeFromList,
 }
