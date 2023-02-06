@@ -14,7 +14,29 @@ const update = async (req, res) => {
   }
 }
 
+const createExperience = async (req, res) => {
+  try {
+    
+  } catch (error) {
+    console.log(error);
+  }
+}
 
+const createEducation = async (req, res) => {
+  try {
+    
+  } catch (error) {
+    console.log(error);
+  }
+}
+
+const createTraining = async (req, res) => {
+  try {
+    
+  } catch (error) {
+    console.log(error);
+  }
+}
 
 export {
   update,
