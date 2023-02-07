@@ -47,7 +47,8 @@ const talentAccountSchema = new Schema({
   unionStatus: {
     type: String,
     enum: ['SAG and AEA', 'SAG', 'AEA', 'Not Affiliated'],
-    required: true
+    // commented out by Brandon to test cd account creation (causes validation error on records where its blank)
+    // required: true
   },
   hair: String,
   eyes: String,
