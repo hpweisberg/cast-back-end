@@ -72,6 +72,7 @@ const createTalentAccount = async (req, res) => {
     const talentAccount = await TalentAccount.create(req.body)
     talentAccount.name = profile.name
     profile.talentAccount = talentAccount._id
+    talentAccount.headshot = profile.photo
     console.log(talentAccount);
     await talentAccount.save()
     await profile.save()
