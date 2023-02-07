@@ -58,6 +58,36 @@ const createTraining = async (req, res) => {
   }
 }
 
+const showExperience = async (req, res) => {
+  try {
+    const talent = await TalentAccount.findById(req.params.id)
+    const exp = talent.experience.id(req.params.experienceId)
+    res.json(exp)
+  } catch (error) {
+    console.log(error);
+  }
+}
+
+const showEducation = async (req, res) => {
+  try {
+    const talent = await TalentAccount.findById(req.params.id)
+    const edu = talent.education.id(req.params.educationId)
+    res.json(edu)
+  } catch (error) {
+    console.log(error);
+  }
+}
+
+const showTraining = async (req, res) => {
+  try {
+    const talent = await TalentAccount.findById(req.params.id)
+    const trn = talent.training.id(req.params.trainingId)
+    res.json(trn)
+  } catch (error) {
+    console.log(error);
+  }
+}
+
 const updateExperience = async (req, res) => {
   try {
     const talentAccount = await TalentAccount.findById(req.params.id)
