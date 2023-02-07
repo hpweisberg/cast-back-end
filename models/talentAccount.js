@@ -18,9 +18,9 @@ const experienceSchema = new Schema ({
   },
   producingEntity: String,
   director: String,
-  year: Number
+  year: Number,
 },
-  {timestamps: true}
+{timestamps: true}
 )
 
 const educationSchema = new Schema ({
@@ -30,7 +30,7 @@ const educationSchema = new Schema ({
   graduated: Boolean,
   year: Number,
 },
-  {timestamps: true}
+{timestamps: true}
 )
 
 const trainingSchema = new Schema ({
@@ -38,7 +38,7 @@ const trainingSchema = new Schema ({
   focus: String,
   teacher: String,
 },
-  {timestamps: true}
+{timestamps: true}
 )
 
 const talentAccountSchema = new Schema({
@@ -59,7 +59,8 @@ const talentAccountSchema = new Schema({
   training: [trainingSchema],
   skills: Array,//custom Strings
   trades: Array,
-  reelLink: String//href to a youtube video
+  reelLink: String,//href to a youtube video
+  profile: { type: Schema.Types.ObjectId, ref: 'Profile' }
 }, {
   timestamps: true,
 })
