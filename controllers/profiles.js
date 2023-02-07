@@ -30,7 +30,7 @@ const getProfile = async (req, res) => {
     .populate('cdAccount')
     res.status(200).json(profile)
   } catch (error) {
-
+    console.log(error)
   }
 }
 
@@ -55,14 +55,15 @@ function addPhoto(req, res) {
 
 const update = async (req, res) => {
   try {
-      const profile = await Profile.findByIdAndUpdate(
+    const profile = await Profile.findByIdAndUpdate(
           req.params.id,
           req.body,
           { new: true }
       )
       res.status(200).json(profile)
   } catch (error) {
-      res.status(500).json(error)
+    console.log(error)  
+    res.status(500).json(error)
   }
 }
 
