@@ -25,6 +25,15 @@ const update = async (req, res) => {
   }
 }
 
+const show = async (req, res) => {
+  try {
+    const talentAccount = await TalentAccount.findById(req.params.id)
+    res.json(talentAccount)
+  } catch (error) {
+    console.log(error);
+  }
+}
+
 const createExperience = async (req, res) => {
   try {
     const talentAccount = await TalentAccount.findById(req.params.id)
@@ -163,6 +172,7 @@ const deleteTraining = async (req, res) => {
 export {
   index,
   update,
+  show,
   createExperience,
   createEducation,
   createTraining,
