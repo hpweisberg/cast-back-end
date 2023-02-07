@@ -1,4 +1,15 @@
 import { TalentAccount } from '../models/talentAccount.js'
+import { Profile } from '../models/profile.js'
+
+const index = async (req, res) => {
+  try {
+    const profiles = await Profile.find({}).populate('talentAccount')
+    const talent = profiles.filter((profile) => profile.talentAccount)
+    res.json(talent)
+  } catch (error) {
+    console.log(error);
+  }
+}
 
 const update = async (req, res) => {
   try {
@@ -11,6 +22,15 @@ const update = async (req, res) => {
   } catch (error) {
       res.status(500).json(error)
       console.log(error);
+  }
+}
+
+const show = async (req, res) => {
+  try {
+    const talentAccount = await TalentAccount.findById(req.params.id)
+    res.json(talentAccount)
+  } catch (error) {
+    console.log(error);
   }
 }
 
@@ -42,6 +62,36 @@ const createTraining = async (req, res) => {
     talentAccount.training.push(req.body)
     talentAccount.save()
     res.json(talentAccount)
+  } catch (error) {
+    console.log(error);
+  }
+}
+
+const showExperience = async (req, res) => {
+  try {
+    const talent = await TalentAccount.findById(req.params.id)
+    const exp = talent.experience.id(req.params.experienceId)
+    res.json(exp)
+  } catch (error) {
+    console.log(error);
+  }
+}
+
+const showEducation = async (req, res) => {
+  try {
+    const talent = await TalentAccount.findById(req.params.id)
+    const edu = talent.education.id(req.params.educationId)
+    res.json(edu)
+  } catch (error) {
+    console.log(error);
+  }
+}
+
+const showTraining = async (req, res) => {
+  try {
+    const talent = await TalentAccount.findById(req.params.id)
+    const trn = talent.training.id(req.params.trainingId)
+    res.json(trn)
   } catch (error) {
     console.log(error);
   }
@@ -120,10 +170,15 @@ const deleteTraining = async (req, res) => {
 }
 
 export {
+  index,
   update,
+  show,
   createExperience,
   createEducation,
   createTraining,
+  showExperience,
+  showEducation,
+  showTraining,
   updateExperience,
   updateEducation,
   updateTraining,

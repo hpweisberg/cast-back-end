@@ -42,6 +42,7 @@ const trainingSchema = new Schema ({
 )
 
 const talentAccountSchema = new Schema({
+  name: String,
   headshot: String,//The POST request that creates the account will set this string to the Cloudify image that they uploaded on sign up
   unionStatus: {
     type: String,
