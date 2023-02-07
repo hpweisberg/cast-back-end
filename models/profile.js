@@ -12,7 +12,7 @@ const profileSchema = new Schema({
   },
   isCd: Boolean,//true = cd, false = talent
   location: String,//where the user is based
-  phoneNumber: Number,
+  phoneNumber: String,
   email: String,
   website: String,
   talentAccount: { type: Schema.Types.ObjectId, ref: 'TalentAccount' },
