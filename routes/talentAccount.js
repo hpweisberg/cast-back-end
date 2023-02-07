@@ -10,6 +10,7 @@ const router = Router()
 /*---------- Protected Routes ----------*/
 router.use(decodeUserFromToken)
 router.get('/', checkAuth, talentCtrl.index)
+router.get('/:id', checkAuth, talentCtrl.show)
 router.get('/:id/experience/:experienceId', checkAuth, talentCtrl.showExperience)
 router.get('/:id/education/:educationId', checkAuth, talentCtrl.showEducation)
 router.get('/:id/training/:trainingId', checkAuth, talentCtrl.showTraining)
