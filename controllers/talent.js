@@ -3,9 +3,8 @@ import { Profile } from '../models/profile.js'
 
 const index = async (req, res) => {
   try {
-    const profiles = await Profile.find({}).populate('talentAccount')
-    const talent = profiles.filter((profile) => profile.talentAccount)
-    res.json(talent)
+    const talentAccounts = await TalentAccount.find({})
+    res.json(talentAccounts)
   } catch (error) {
     console.log(error);
   }
