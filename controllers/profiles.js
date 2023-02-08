@@ -37,6 +37,7 @@ const index = async (req, res) => {
 const getProfile = async (req, res) => {
   try {
     const profile = await Profile.findById(req.params.id)
+    console.log(profile);
     res.status(200).json(profile)
   } catch (error) {
     console.log(error);
