@@ -23,24 +23,14 @@ const index = async (req, res) => {
   }
 }
 
-// function getProfile(req, res) {
-//   Profile.findById(req.params.id)
-//   .then(profile => {
-//     console.log("profile", profile)
-//     res.json(profile)
-//   })
-//   .catch(err => {
-//     console.log(err)
-//   })
-// }
-
 const getProfile = async (req, res) => {
   try {
     const profile = await Profile.findById(req.params.id)
-    console.log(profile);
+    .populate('talentAccount')
+    .populate('cdAccount')
     res.status(200).json(profile)
   } catch (error) {
-    console.log(error);
+    console.log(error)
   }
 }
 
@@ -65,14 +55,15 @@ function addPhoto(req, res) {
 
 const update = async (req, res) => {
   try {
-      const profile = await Profile.findByIdAndUpdate(
+    const profile = await Profile.findByIdAndUpdate(
           req.params.id,
           req.body,
           { new: true }
       )
       res.status(200).json(profile)
   } catch (error) {
-      res.status(500).json(error)
+    console.log(error)  
+    res.status(500).json(error)
   }
 }
 
