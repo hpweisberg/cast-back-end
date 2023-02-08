@@ -4,6 +4,7 @@ import { Profile } from '../models/profile.js'
 const index = async (req, res) => {
   try {
     const talentAccounts = await TalentAccount.find({})
+    .populate('profile')
     res.json(talentAccounts)
   } catch (error) {
     console.log(error);
