@@ -28,6 +28,11 @@ const getProfile = async (req, res) => {
     const profile = await Profile.findById(req.params.id)
     .populate('talentAccount')
     .populate('cdAccount')
+    if (profile.cdAccount) {
+      profile.isCd = true
+    } else {
+      profile.isCd = false
+    }
     res.status(200).json(profile)
   } catch (error) {
     console.log(error)
