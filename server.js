@@ -19,7 +19,7 @@ const app = express()
 
 // basic middleware
 app.use((req, res, next) => {
-  res.setHeader("Access-Control-Allow-Origin", "https://castapp.netlify.app/profile");
+  res.setHeader("Access-Control-Allow-Origin", "https://castapp.netlify.app");
   res.header(
     "Access-Control-Allow-Headers",
     "Origin, X-Requested-With, Content-Type, Accept"
