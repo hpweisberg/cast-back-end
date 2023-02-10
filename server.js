@@ -18,14 +18,7 @@ import { router as talentRouter } from './routes/talentAccount.js'
 const app = express()
 
 // basic middleware
-app.use((req, res, next) => {
-  res.setHeader("Access-Control-Allow-Origin", "https://castapp.netlify.app");
-  res.header(
-    "Access-Control-Allow-Headers",
-    "Origin, X-Requested-With, Content-Type, Accept"
-  );
-  next();
-});
+app.use(cors())
 app.use(logger('dev'))
 app.use(express.json())
 app.use(formData.parse())
