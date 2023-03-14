@@ -94,7 +94,10 @@ const createCdAccount = async (req, res) => {
     const cdAccount = await CDAccount.create(req.body)
     const profile = await Profile.findById(req.params.id)
     profile.cdAccount = cdAccount._id
+    profile.populate('cdAccount')
     await profile.save()
+    console.log('REQ BODY', profile);
+    console.log(profile);
     res.json(profile)
   } catch (error) {
     console.log(error);
