@@ -26,13 +26,21 @@ const index = async (req, res) => {
 const getProfile = async (req, res) => {
   try {
     const profile = await Profile.findById(req.params.id)
-    .populate('talentAccount')
-    .populate('cdAccount')
+      .populate([{
+        path: 'cdAccount',
+        model: 'CDAccount'
+      }, {
+        path: 'talentAccount',
+        model: 'TalentAccount'
+      }])
+    // profile.populate('cdAccount')
+    // profile.populate('talentAccount')
     if (profile.cdAccount) {
       profile.isCd = true
     } else {
       profile.isCd = false
     }
+    console.log('PROFILE', profile);
     res.status(200).json(profile)
   } catch (error) {
     console.log(error)
@@ -61,11 +69,18 @@ function addPhoto(req, res) {
 const update = async (req, res) => {
   try {
     const profile = await Profile.findByIdAndUpdate(
-          req.params.id,
-          req.body,
-          { new: true }
-      )
-      res.status(200).json(profile)
+      req.params.id,
+      req.body,
+      { new: true }
+    )
+    .populate([{
+      path: 'cdAccount',
+      model: 'CDAccount'
+    }, {
+      path: 'talentAccount',
+      model: 'TalentAccount'
+    }])
+    res.status(200).json(profile)
   } catch (error) {
     console.log(error)  
     res.status(500).json(error)
@@ -77,13 +92,14 @@ const createTalentAccount = async (req, res) => {
     const profile = await Profile.findById(req.params.id)
     const talentAccount = await TalentAccount.create(req.body)
     talentAccount.name = profile.name
-    profile.talentAccount = talentAccount._id
+    profile.talentAccount = talentAccount
     talentAccount.headshot = profile.photo
     talentAccount.profile = profile._id
-    console.log(talentAccount);
+    profile.isCd = false
+    console.log(profile);
     await talentAccount.save()
     await profile.save()
-    res.json(talentAccount)
+    res.json(profile)
   } catch (error) {
     console.log(error);
   }
@@ -95,9 +111,8 @@ const createCdAccount = async (req, res) => {
     const profile = await Profile.findById(req.params.id)
     profile.cdAccount = cdAccount._id
     profile.populate('cdAccount')
+    profile.isCd = true
     await profile.save()
-    console.log('REQ BODY', profile);
-    console.log(profile);
     res.json(profile)
   } catch (error) {
     console.log(error);

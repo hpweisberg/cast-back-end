@@ -10,13 +10,13 @@ const update = async (req, res) => {
       )
     res.status(200).json(cdAccount)
   } catch (error) {
+    console.log('ERROR', error);
       res.status(500).json(error)
   }
 }
 
 const createList = async (req, res) => {
   try {
-    console.log('PARAMS', req.params);
     const cdAccount = await CDAccount.findById(req.params.id)
     cdAccount.lists.push(req.body)
     cdAccount.save()
@@ -54,12 +54,9 @@ const showList = async (req, res) => {
 
 const addToList = async (req, res) => {
   try {
-    console.log('hello');
     const cd = await CDAccount.findById(req.params.id)
     const list = cd.lists.id(req.params.listId)
     list.talent.push(req.params.talentId)
-    // await list.save()
-    console.log(list);
     await cd.save()
     res.json(list)
   } catch (error) {
