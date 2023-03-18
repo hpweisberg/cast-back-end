@@ -96,7 +96,6 @@ const createTalentAccount = async (req, res) => {
     talentAccount.headshot = profile.photo
     talentAccount.profile = profile._id
     profile.isCd = false
-    console.log(profile);
     await talentAccount.save()
     await profile.save()
     res.json(profile)
