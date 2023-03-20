@@ -21,7 +21,6 @@ const createList = async (req, res) => {
     cdAccount.lists.push(req.body)
     cdAccount.save()
     const newList = cdAccount.lists[cdAccount.lists.length - 1]
-    console.log('NEWLIST', newList);
     res.json(newList)
   } catch (error) {
     console.log(error);
@@ -32,7 +31,6 @@ const indexLists = async (req, res) => {
   try {
 
     const cd = await CDAccount.findById(req.params.id)
-    // .populate('lists.talent')
     const lists = cd.lists
     res.json(lists)
   } catch (error) {
@@ -42,10 +40,8 @@ const indexLists = async (req, res) => {
 
 const showList = async (req, res) => {
   try {
-    console.log('REQPARAMS', req.params);
     const cd = await CDAccount.findById(req.params.id).populate('lists.talent')
     const list = cd.lists.id(req.params.listId)
-    console.log('list', list);
     res.json(list)
   } catch (error) {
     console.log(error);
@@ -124,11 +120,8 @@ const removeFromBlacklist = async (req, res) => {
 
 const removeFromList = async (req, res) => {
   try {
-    console.log('PARAMS', req.params);
     const cd = await CDAccount.findById(req.params.id)
-    console.log(cd.lists);
     const list = cd.lists.id(req.params.listId)
-    console.log(list);
     list.talent.remove({_id: req.params.talentId})
     await cd.save()
     res.json(list)

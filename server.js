@@ -30,12 +30,12 @@ app.use('/api/talent', talentRouter)
 app.use('/api/cd', cdRouter)
 
 // handle 404 errors
-app.use(function (req, res, next) {
+app.use(function (res) {
   res.status(404).json({ err: 'Not found' })
 })
 
 // handle all other errors
-app.use(function (err, req, res, next) {
+app.use(function (err, res) {
   res.status(err.status || 500).json({ err: err.message })
 })
 
